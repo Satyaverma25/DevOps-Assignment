@@ -1,13 +1,17 @@
-# Node DevOps Project – Containerized Node.js Application
+# DevOps-Assignment
 
-## 📌 Project Overview
+## Containerizing a Node.js Application with Docker Compose
+
+---
+
+# 📌 Project Overview
 
 This project demonstrates how to containerize a **Node.js backend application** using **Docker** and orchestrate multiple services using **Docker Compose**.
 
 The application connects to:
 
-* **MongoDB** for data storage
-* **Redis** for caching
+* **MongoDB** – for data storage
+* **Redis** – for caching
 
 All services run in separate containers and communicate through the **Docker Compose network**.
 
@@ -29,23 +33,26 @@ The application runs on **port 8090**.
 # 📁 Project Structure
 
 ```
-node-devops-project
+DevOps-Assignment
 │
 ├── app.js
 ├── package.json
 ├── Dockerfile
 ├── docker-compose.yml
 ├── .env
-└── README.md
+├── README.md
+└── screenshots
+      ├── app-running.png
+      └── health-endpoint.png
 ```
 
 ---
 
 # ⚙️ Environment Variables
 
-The application configuration is managed using environment variables stored in a `.env` file.
+Application configuration is managed using **environment variables** stored in a `.env` file.
 
-Example:
+Example configuration:
 
 ```
 PORT=8090
@@ -56,62 +63,60 @@ REDIS_PORT=6379
 
 ---
 
-# 🐳 Docker Setup
+# 🐳 Dockerfile
 
-## Dockerfile
-
-The Dockerfile builds the Node.js application image.
+The Dockerfile builds the Node.js application container.
 
 Steps performed:
 
-1. Uses official Node.js base image
+1. Uses official **Node.js base image**
 2. Sets working directory
 3. Installs dependencies
 4. Copies application files
-5. Exposes application port
-6. Starts the server
+5. Exposes port **8090**
+6. Starts the application
 
 ---
 
-# 🐙 Docker Compose Services
+# 🐙 Docker Compose Setup
 
-The application uses **three services** defined in `docker-compose.yml`.
+The `docker-compose.yml` file defines three services:
 
-### 1️⃣ Application Service
+### 1️⃣ Node.js Application
 
-* Node.js backend application
-* Runs on port **8090**
-* Uses environment variables from `.env`
+* Runs the backend server
+* Exposes **port 8090**
+* Loads environment variables from `.env`
 
-### 2️⃣ MongoDB Service
+### 2️⃣ MongoDB
 
-* Official MongoDB Docker image
+* Official MongoDB image
 * Stores application data
-* Uses **Docker volume for persistent storage**
+* Uses **Docker volumes** for persistent storage
 
-### 3️⃣ Redis Service
+### 3️⃣ Redis
 
 * Official Redis image
 * Used for caching
 
 ---
 
-# 🧠 Service Communication
+# 🔗 Service Communication
 
-All containers communicate through the **Docker Compose network** using service names.
+All containers communicate using the **Docker Compose network**.
 
-Example:
+The Node.js application connects to:
 
 * MongoDB → `mongo`
 * Redis → `redis`
-
-The Node.js application connects to these services using the environment variables.
 
 ---
 
 # 💾 Data Persistence
 
-MongoDB uses a **Docker volume** to ensure that data persists even if the container is restarted.
+MongoDB data persists even after container restarts using **Docker volumes**.
+
+Example:
 
 ```
 volumes:
@@ -122,34 +127,29 @@ volumes:
 
 # 🚀 How to Run the Project
 
-## Step 1 – Clone the Repository
+### Step 1 – Clone Repository
 
 ```
-git clone <your-repository-link>
+git clone https://github.com/YOUR-USERNAME/DevOps-Assignment.git
 ```
 
-Navigate to the project folder:
+### Step 2 – Navigate to Project
 
 ```
-cd node-devops-project
+cd DevOps-Assignment
 ```
 
----
-
-## Step 2 – Start the Application
-
-Run the following command:
+### Step 3 – Start Containers
 
 ```
 docker compose up --build
 ```
 
-Docker will:
+Docker will build and start:
 
-* Build the Node.js image
-* Pull MongoDB image
-* Pull Redis image
-* Start all containers
+* Node.js container
+* MongoDB container
+* Redis container
 
 ---
 
@@ -169,7 +169,7 @@ Node DevOps Application Running 🚀
 
 ---
 
-# ❤️ Health Check Endpoint
+# ❤️ Health Endpoint
 
 ```
 http://localhost:8090/health
@@ -189,20 +189,20 @@ Example response:
 
 # 📸 Screenshots
 
-## Application Running
+## 1️⃣ Application Running
 
-*(Insert screenshot of http://localhost:8090 here)*
+Screenshot showing the Node.js application running successfully on **localhost:8090**.
 
-<img width="1919" height="1027" alt="Screenshot 2026-03-11 183452" src="https://github.com/user-attachments/assets/3d1083f7-0d90-406c-9ca7-585a68edbea9" />
+<img width="1919" height="1027" alt="Screenshot 2026-03-11 183452" src="https://github.com/user-attachments/assets/dc700bdf-cc75-4a33-b5d8-908d9d120f58" />
 
 
 ---
 
-## Health Endpoint
+## 2️⃣ Health Endpoint Response
 
-*(Insert screenshot of /health endpoint here)*
+Screenshot showing the **/health API response** confirming MongoDB and Redis connectivity.
 
-<img width="1919" height="1011" alt="Screenshot 2026-03-11 183555" src="https://github.com/user-attachments/assets/f03312be-a8e3-4195-bdda-8972c97edb91" />
+<img width="1919" height="1011" alt="Screenshot 2026-03-11 183555" src="https://github.com/user-attachments/assets/d8c88d5a-1fd7-42be-bb8b-00c5cd104de5" />
 
 
 ---
@@ -217,10 +217,10 @@ Node.js Application (Port 8090)
      |
      |------ MongoDB (Database)
      |
-     |------ Redis (Caching)
+     |------ Redis (Cache)
 ```
 
-All services are containerized and managed using **Docker Compose**.
+All services are containerized using **Docker** and orchestrated using **Docker Compose**.
 
 ---
 
@@ -231,7 +231,7 @@ This repository includes:
 * Node.js application source code
 * Dockerfile
 * docker-compose.yml
-* Environment configuration file (.env)
+* Example `.env` configuration
 * README.md with setup instructions
 * Screenshots demonstrating the running application
 
@@ -241,4 +241,4 @@ This repository includes:
 
 Satya Prakash
 B.Tech Computer Science and Engineering
-DevOps Enthusias
+DevOps Assignment Project
